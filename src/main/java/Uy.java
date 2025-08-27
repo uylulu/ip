@@ -1,8 +1,12 @@
-public class Duke {
+public class Uy {
     public String lines = "---------------------------------------";
     private void print(String s) {
         System.out.println(lines);
         System.out.println(s);
+    }
+
+    String input() {
+        return System.console().readLine();
     }
 
     public static void main(String[] args) {
