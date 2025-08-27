@@ -22,55 +22,61 @@ public class Uy {
     public static void main(String[] args) {
         print("Hello I'm Uy, what can I do for you?");
         while (true) {
-            String message = readString();
-            if(message.equals("list")) {
-                System.out.println("Here are the tasks in your list:");
-                for(int i = 0;i <= count;i++) {
-                    System.out.println((i + 1) + "." + tasks[i].toString());
+            try {
+                String message = readString();
+                if(message.equals("list")) {
+                    System.out.println("Here are the tasks in your list:");
+                    for(int i = 0;i <= count;i++) {
+                        System.out.println((i + 1) + "." + tasks[i].toString());
+                    }
+                    System.out.println(lines);
+
+                } else if(message.equals("bye")) {
+                    print("Bye. Hope to see you again soon!");
+                    break;
+                } else if(message.equals("mark")) {
+                    int x = readInt();
+                    tasks[x - 1].mark();
+                    System.out.println("Nice, I have marked this task as done:");
+                    System.out.println(tasks[x - 1].toString());
+                } else if(message.equals("unmark")) {
+                    int x = readInt();
+                    tasks[x - 1].unmark();
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println(tasks[x - 1].toString());
+                } else if(message.equals("todo")) {
+                    count++;
+                    tasks[count] = new ToDos(count);
+
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[count].toString());
+                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+                } else if(message.equals("deadline")) {
+                    count++;
+                    tasks[count] = new Deadlines(count);
+
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[count].toString());
+                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+                } else if(message.equals("event")) {
+                    count++;
+                    tasks[count] = new Events(count);
+
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[count].toString());
+                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+                } else if(message.equals("deadline")) {
+                    count++;
+                    tasks[count] = new Deadlines(count);
+
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(tasks[count].toString());
+                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+                } else {
+                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-                System.out.println(lines);
-
-            } else if(message.equals("bye")) {
-                print("Bye. Hope to see you again soon!");
-                break;
-            } else if(message.equals("mark")) {
-                int x = readInt();
-                tasks[x - 1].mark();
-                System.out.println("Nice, I have marked this task as done:");
-                System.out.println(tasks[x - 1].toString());
-            } else if(message.equals("unmark")) {
-                int x = readInt();
-                tasks[x - 1].unmark();
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(tasks[x - 1].toString());
-            } else if(message.equals("todo")) {
-                count++;
-                tasks[count] = new ToDos(count);
-
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[count].toString());
-                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-            } else if(message.equals("deadline")) {
-                count++;
-                tasks[count] = new Deadlines(count);
-
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[count].toString());
-                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-            } else if(message.equals("event")) {
-                count++;
-                tasks[count] = new Events(count);
-
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[count].toString());
-                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-            } else if(message.equals("deadline")) {
-                count++;
-                tasks[count] = new Deadlines(count);
-
-                System.out.println("Got it. I've added this task:");
-                System.out.println(tasks[count].toString());
-                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }

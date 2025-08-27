@@ -4,7 +4,10 @@ public class Task {
     protected int index;
     protected String type;
 
-    public Task(String task_name, Boolean marked, int index, String type) {
+    public Task(String task_name, Boolean marked, int index, String type) throws IllegalArgumentException {
+        if(task_name.length() == 0) {
+            throw new IllegalArgumentException("OOPS!!! The description of a todo cannot be empty.");
+        }
         this.task_name = task_name;
         this.marked = marked;
         this.index = index;
