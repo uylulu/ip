@@ -1,7 +1,15 @@
 public class Task {
-    private String task_name;
-    private Boolean marked = false;
-    private int index;
+    protected String task_name;
+    protected Boolean marked = false;
+    protected int index;
+    protected String type;
+
+    public Task(String task_name, Boolean marked, int index, String type) {
+        this.task_name = task_name;
+        this.marked = marked;
+        this.index = index;
+        this.type = type;
+    }
 
     public Task(String task_name, Boolean marked, int index) {
         this.task_name = task_name;
@@ -37,8 +45,12 @@ public class Task {
         }
     }
 
+    public String getType() {
+        return "[" + this.type + "]";
+    }
+
     @Override
     public String toString() {
-        return this.index + "." + this.getMarkedString() + " " + this.task_name;
+        return this.getType() + this.getMarkedString() + this.task_name;
     }
 }

@@ -4,18 +4,18 @@ public class Uy {
     private static String lines = "---------------------------------------";
     private static Task[] tasks = new Task[100];
     private static int count = -1;
-    private static Scanner input = new Scanner(System.in);
+    public static Scanner input = new Scanner(System.in);
 
     private static void print(String s) {
         System.out.println(lines);
         System.out.println(s);
     }
 
-    private static String readString() {
+    public static String readString() {
         return input.next();
     }
 
-    private static int readInt() {
+    public static int readInt() {
         return input.nextInt();
     }
 
@@ -26,9 +26,10 @@ public class Uy {
             if(message.equals("list")) {
                 System.out.println("Here are the tasks in your list:");
                 for(int i = 0;i <= count;i++) {
-                    System.out.println(tasks[i].toString());
+                    System.out.println((i + 1) + "." + tasks[i].toString());
                 }
                 System.out.println(lines);
+
             } else if(message.equals("bye")) {
                 print("Bye. Hope to see you again soon!");
                 break;
@@ -42,11 +43,34 @@ public class Uy {
                 tasks[x - 1].unmark();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(tasks[x - 1].toString());
-            } else  {
+            } else if(message.equals("todo")) {
                 count++;
-                String suffix = input.nextLine();
-                tasks[count] = new Task(message + suffix, false, count + 1);
-                print("added: " + message + suffix);
+                tasks[count] = new ToDos(count);
+
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[count].toString());
+                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+            } else if(message.equals("deadline")) {
+                count++;
+                tasks[count] = new Deadlines(count);
+
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[count].toString());
+                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+            } else if(message.equals("event")) {
+                count++;
+                tasks[count] = new Events(count);
+
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[count].toString());
+                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+            } else if(message.equals("deadline")) {
+                count++;
+                tasks[count] = new Deadlines(count);
+
+                System.out.println("Got it. I've added this task:");
+                System.out.println(tasks[count].toString());
+                System.out.println("Now you have " + (count + 1) + " tasks in your list:");
             }
         }
     }
