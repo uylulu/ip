@@ -1,8 +1,9 @@
 import java.util.Scanner;
+import java.util.*;
 
 public class Uy {
     private static String lines = "---------------------------------------";
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<>();
     private static int count = -1;
     public static Scanner input = new Scanner(System.in);
 
@@ -27,7 +28,7 @@ public class Uy {
                 if(message.equals("list")) {
                     System.out.println("Here are the tasks in your list:");
                     for(int i = 0;i <= count;i++) {
-                        System.out.println((i + 1) + "." + tasks[i].toString());
+                        System.out.println((i + 1) + "." + tasks.get(i).toString());
                     }
                     System.out.println(lines);
 
@@ -36,42 +37,51 @@ public class Uy {
                     break;
                 } else if(message.equals("mark")) {
                     int x = readInt();
-                    tasks[x - 1].mark();
+                    tasks.get(x - 1).mark();
                     System.out.println("Nice, I have marked this task as done:");
-                    System.out.println(tasks[x - 1].toString());
+                    System.out.println(tasks.get(x - 1).toString());
                 } else if(message.equals("unmark")) {
                     int x = readInt();
-                    tasks[x - 1].unmark();
+                    tasks.get(x - 1).unmark();
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(tasks[x - 1].toString());
+                    System.out.println(tasks.get(x - 1).toString());
                 } else if(message.equals("todo")) {
                     count++;
-                    tasks[count] = new ToDos(count);
+                    tasks.add(new ToDos(count));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks[count].toString());
+                    System.out.println(tasks.get(count).toString());
                     System.out.println("Now you have " + (count + 1) + " tasks in your list:");
                 } else if(message.equals("deadline")) {
                     count++;
-                    tasks[count] = new Deadlines(count);
+                    tasks.add(new Deadlines(count));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks[count].toString());
+                    System.out.println(tasks.get(count).toString());
                     System.out.println("Now you have " + (count + 1) + " tasks in your list:");
                 } else if(message.equals("event")) {
                     count++;
-                    tasks[count] = new Events(count);
+                    tasks.add(new Events(count));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks[count].toString());
+                    System.out.println(tasks.get(count).toString());
                     System.out.println("Now you have " + (count + 1) + " tasks in your list:");
                 } else if(message.equals("deadline")) {
                     count++;
-                    tasks[count] = new Deadlines(count);
+                    tasks.add(new Deadlines(count));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks[count].toString());
+                    System.out.println(tasks.get(count).toString());
                     System.out.println("Now you have " + (count + 1) + " tasks in your list:");
+                } else if(message.equals("delete")) {
+                    int index = readInt();
+                    System.out.println("I've deleted this task:");
+                    System.out.println(tasks.get(index).toString());
+                    System.out.println("Now you have " + (count) + " tasks in your list:");
+
+                    tasks.remove(index - 1);
+                    count--;
+
                 } else {
                     System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
