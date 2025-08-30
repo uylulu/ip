@@ -6,12 +6,22 @@ public class Events extends Task {
     protected LocalDate from;
     protected LocalDate to;
 
+    /**
+     * Constructor for Events
+     * @param task_name of the event
+     * @param from start date of the event
+     * @param to end date of the event
+    */ 
     public Events(String task_name, LocalDate from, LocalDate to) {
         super(task_name, false, "E");
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Constructor for Events
+     * @param description of the event task with the following format: <task_name> /from <from_date> /to <to_date>
+     */
     public Events(String description) throws IllegalArgumentException {
         super("Event", false, "E");
 

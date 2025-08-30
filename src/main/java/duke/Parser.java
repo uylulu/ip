@@ -5,6 +5,14 @@ public class Parser {
 
     }
 
+    /**
+     * Parses the user input and executes the corresponding command.
+     * 
+     * @param message the user input
+     * @param tasks the TaskList object that stores the tasks
+     * @param ui the UI object that handles the user interface
+     * @param storage the Storage object that handles data storage
+    */ 
     public void parseAndRun(String message, TaskList tasks, UI ui, Storage storage) throws Exception {
         if (message.equals("list")) {
             ui.showTasks(tasks);

@@ -15,11 +15,10 @@ public class Storage {
         this.data_path = Paths.get(project_dir, file_path);
     }
 
-    // 3 types of tasks:
-    // [T][] read books
-    // [E][] project (from: Aug 30 2025 to: Aug 31 2025)
-    // [D][] return book (by: Sep 01 2025)
-
+    /**
+     * Writes the tasks to the data file.
+     * @param tasks the TaskList object containing the tasks to be written
+    */
     public void writeTasks(TaskList tasks) {
         try (FileWriter fw = new FileWriter(data_path.toString())) {
             for (int i = 0; i < tasks.getTaskCount(); i++) {
@@ -30,6 +29,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a task from a string.
+     * @param line the string to parse
+     * @return the parsed Task object
+     * @throws UnknownTaskError if the task format is invalid
+    */
     public Task parseTask(String line) throws UnknownTaskError {
         String type = line.substring(1, 2);
         String description = line.substring(6, line.length()).trim();
@@ -52,6 +57,11 @@ public class Storage {
         return newTask;
     }
 
+    /**
+     * Loads the tasks from the data file.
+     * @return the TaskList object containing the loaded tasks
+     * @throws IOException if there is an error reading the data file
+    */
     public TaskList loadTasks() throws IOException {
         try {
             List<String> lines = Files.readAllLines(data_path);

@@ -5,6 +5,11 @@ import java.util.regex.*;
 public class Deadlines extends Task {
     protected LocalDate deadline;
 
+    /**
+     * Constructor for Deadlines
+     * 
+     * @param description of the deadline task with the following format: <task_name> /by <deadline>
+     */
     public Deadlines(String description) {
         super("Deadlines", false, "D");
 

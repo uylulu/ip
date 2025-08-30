@@ -14,7 +14,6 @@ public class Uy {
 
     public static Scanner input = new Scanner(System.in);
 
-//  DATE FORMATING
     private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter output_date_formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
@@ -27,8 +26,11 @@ public class Uy {
             e.printStackTrace();
             this.tasks = new TaskList();
         }
-    }
+    }   
 
+    /**
+     * Start the chat bot
+    */
     public void run() {
         ui.showWelcome();
         while (true) {
@@ -45,6 +47,11 @@ public class Uy {
         }
     }
 
+    /**
+     * Parses a date string into a LocalDate object.
+     * @param date the date string to parse
+     * @return the parsed LocalDate object
+     */
     public static LocalDate parse_date(String date) {
         try {
             return LocalDate.parse(date, date_formatter);
@@ -56,14 +63,27 @@ public class Uy {
         return null;
     }
 
+    /**
+     * Formats a LocalDate object into a string.
+     * @param date the LocalDate object to format
+     * @return the formatted date string
+    */
     public static String format_date(LocalDate date) {
         return date.format(output_date_formatter);
     }
 
+    /**
+     * Reads a string from the user input.
+     * @return the input string
+    */  
     public static String readString() {
         return input.next();
     }
 
+    /**
+     * Reads an integer from the user input.
+     * @return the input integer
+    */  
     public static int readInt() {
         return input.nextInt();
     }
