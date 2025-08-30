@@ -23,7 +23,6 @@ public class Events extends Task {
             String from = matcher.group(2);
             String to = matcher.group(3);
             this.task_name = task_name;
-            System.out.println(this.task_name + " " + from + " " + to);
             this.from = Uy.parse_date(from);
             this.to = Uy.parse_date(to);
         } else {

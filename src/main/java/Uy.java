@@ -1,15 +1,16 @@
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.*;
-import java.io.FileWriter;
 
 public class Uy {
+
     private static String lines = "---------------------------------------";
-    private static ArrayList<Task> tasks = new ArrayList<>();
-    private static int count = -1;
+    private static TaskList tasks = new TaskList();
+
     public static Scanner input = new Scanner(System.in);
     private static final String home = System.getProperty("user.home");
     private static final String project_dir = java.nio.file.Paths.get(home, "OneDrive", "Desktop", "CS2103T", "ip", "src").toString();
@@ -45,62 +46,59 @@ public class Uy {
         while (true) {
             try {
                 String message = readString();
-                if(message.equals("list")) {
+                if (message.equals("list")) {
                     System.out.println("Here are the tasks in your list:");
-                    for(int i = 0;i <= count;i++) {
-                        System.out.println((i + 1) + "." + tasks.get(i).toString());
-                    }
+                    System.out.println(tasks.toString());
                     System.out.println(lines);
 
-                } else if(message.equals("bye")) {
+                } else if (message.equals("bye")) {
                     print("Bye. Hope to see you again soon!");
                     break;
-                } else if(message.equals("mark")) {
+                } else if (message.equals("mark")) {
+
                     int x = readInt();
-                    tasks.get(x - 1).mark();
+                    tasks.markTask(x - 1);
                     System.out.println("Nice, I have marked this task as done:");
-                    System.out.println(tasks.get(x - 1).toString());
-                } else if(message.equals("unmark")) {
+                    System.out.println(tasks.getTask(x - 1).toString());
+
+                } else if (message.equals("unmark")) {
+
                     int x = readInt();
-                    tasks.get(x - 1).unmark();
+                    tasks.unmarkTask(x - 1);
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(tasks.get(x - 1).toString());
-                } else if(message.equals("todo")) {
-                    count++;
-                    tasks.add(new ToDos(count));
+                    System.out.println(tasks.getTask(x - 1).toString());
+
+                } else if (message.equals("todo")) {
+                    tasks.addTask(new ToDos(tasks.getTaskCount() + 1));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.get(count).toString());
-                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-                } else if(message.equals("deadline")) {
-                    count++;
-                    tasks.add(new Deadlines(count));
+                    System.out.println(tasks.getTask(tasks.getTaskCount() - 1).toString());
+                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
+                } else if (message.equals("deadline")) {
+                    tasks.addTask(new Deadlines(tasks.getTaskCount() + 1));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.get(count).toString());
-                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-                } else if(message.equals("event")) {
-                    count++;
-                    tasks.add(new Events(count));
+                    System.out.println(tasks.getTask(tasks.getTaskCount() - 1).toString());
+                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
+                } else if (message.equals("event")) {
+                    tasks.addTask(new Events(tasks.getTaskCount() + 1));
 
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.get(count).toString());
-                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-                } else if(message.equals("delete")) {
+                    System.out.println(tasks.getTask(tasks.getTaskCount() - 1).toString());
+                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
+                } else if (message.equals("delete")) {
                     int index = readInt();
                     System.out.println("I've deleted this task:");
-                    System.out.println(tasks.get(index).toString());
-                    System.out.println("Now you have " + (count) + " tasks in your list:");
+                    System.out.println(tasks.getTask(index - 1).toString());
+                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
 
-                    tasks.remove(index - 1);
-                    count--;
-
+                    tasks.deleteTask(tasks.getTask(index - 1));
                 } else {
                     System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
                 try (FileWriter fw = new FileWriter(data_path.toString())) {
-                    for(int i = 0;i <= count;i++) {
-                        fw.write(tasks.get(i).toString());
+                    for (int i = 0; i < tasks.getTaskCount(); i++) {
+                        fw.write(tasks.getTask(i).toString());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
