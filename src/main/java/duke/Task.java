@@ -1,3 +1,4 @@
+package duke;
 public class Task {
     protected String task_name;
     protected Boolean marked = false;
