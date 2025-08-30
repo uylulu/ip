@@ -14,7 +14,6 @@ public class Uy {
 
     public static Scanner input = new Scanner(System.in);
 
-//  DATE FORMATING
     private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter output_date_formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
 

@@ -45,6 +45,6 @@ public class Events extends Task {
     @Override
     public String toString() {
         return super.toString() + " (from: " + Uy.format_date(this.from) + " to: " + Uy.format_date(this.to) + ")";
-    }
+    }   
 }
 
