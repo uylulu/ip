@@ -9,6 +9,7 @@ public class Uy {
     private TaskList tasks = new TaskList();
     private Storage storage;
     private UI ui = new UI();
+    private Parser parser = new Parser();
 
     public static Scanner input = new Scanner(System.in);
 
@@ -32,45 +33,11 @@ public class Uy {
         while (true) {
             try {
                 String message = readString();
-                if (message.equals("list")) {
-                    ui.showTasks(tasks);
-    
-                } else if (message.equals("bye")) {
-                    ui.showGoodbye();
+                parser.parseAndRun(message, tasks, ui, storage);
+
+                if(message.equals("bye")) {
                     break;
-
-                } else if (message.equals("mark")) {
-                    int x = readInt();
-                    tasks.markTask(x - 1);
-                    ui.showMarkedTask(tasks.getTask(x - 1));
-
-                } else if (message.equals("unmark")) {
-                    int x = readInt();
-                    tasks.unmarkTask(x - 1);
-                    ui.showUnmarkedTask(tasks.getTask(x - 1));
-                    System.out.println(tasks.getTask(x - 1).toString());
-    
-                } else if (message.equals("todo")) {
-                    tasks.addTask(new ToDos(Uy.input.nextLine().trim()));
-                    ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
-
-                } else if (message.equals("deadline")) {
-                    tasks.addTask(new Deadlines(Uy.input.nextLine().trim()));
-                    ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
-
-                } else if (message.equals("event")) {
-                    tasks.addTask(new Events(Uy.input.nextLine().trim()));
-                    ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
-
-                } else if (message.equals("delete")) {
-                    int index = readInt();
-                    ui.showDeleteTask(tasks.getTask(index - 1), tasks);
-                    tasks.deleteTask(tasks.getTask(index - 1));
-
-                } else {
-                    ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-                
             } catch (Exception e) {
                 ui.showError(e.getMessage());
             }
@@ -92,11 +59,11 @@ public class Uy {
         return date.format(output_date_formatter);
     }
 
-    public String readString() {
+    public static String readString() {
         return input.next();
     }
 
-    public int readInt() {
+    public static int readInt() {
         return input.nextInt();
     }
 
