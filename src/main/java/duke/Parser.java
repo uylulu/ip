@@ -40,6 +40,11 @@ public class Parser {
             ui.showDeleteTask(tasks.getTask(index - 1), tasks);
             tasks.deleteTask(tasks.getTask(index - 1));
 
+        } else if (message.equals("find")) {
+            String keyword = Uy.input.nextLine().trim();
+            TaskList results = tasks.findTasks(keyword);
+            ui.showMatchingTasks(results);
+
         } else {
             ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

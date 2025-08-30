@@ -24,6 +24,11 @@ public class UI {
         System.out.println(lines);
     }
 
+    public void showMatchingTasks(TaskList tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        System.out.println(tasks.toString());
+    }
+
     public void showMarkedTask(Task task) {
         System.out.println("Nice, I have marked this task as done:");
         System.out.println(task.toString());
