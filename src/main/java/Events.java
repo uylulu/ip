@@ -1,17 +1,18 @@
+import java.time.LocalDate;
 import java.util.regex.*;
 
 public class Events extends Task {
-    protected String from;
-    protected String to;
+    protected LocalDate from;
+    protected LocalDate to;
 
-    public Events(String task_name, int index, String from, String to) {
+    public Events(String task_name, int index, LocalDate from, LocalDate to) {
         super(task_name, false, index, "E");
         this.from = from;
         this.to = to;
     }
 
     public Events(int index) {
-        super("", false, index, "E");
+        super("Event", false, index, "E");
         String line = Uy.input.nextLine();
 
         Pattern pattern = Pattern.compile("^(.*?) /from (.*?) /to (.*)$");
@@ -22,8 +23,9 @@ public class Events extends Task {
             String from = matcher.group(2);
             String to = matcher.group(3);
             this.task_name = task_name;
-            this.from = from;
-            this.to = to;
+            System.out.println(this.task_name + " " + from + " " + to);
+            this.from = Uy.parse_date(from);
+            this.to = Uy.parse_date(to);
         } else {
             // TODO: NEED TO THROW ERROR
         }
@@ -33,7 +35,7 @@ public class Events extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (from: " + from + " to: " + to + ")";
+        return super.toString() + " (from: " + Uy.format_date(this.from) + " to: " + Uy.format_date(this.to) + ")";
     }
 }
 

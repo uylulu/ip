@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.*;
 import java.io.FileWriter;
@@ -9,13 +11,25 @@ public class Uy {
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static int count = -1;
     public static Scanner input = new Scanner(System.in);
-    private static String home = System.getProperty("user.home");
-    private static String project_dir = java.nio.file.Paths.get(home, "OneDrive", "Desktop", "CS2103T", "ip", "src").toString();
-    private static Path data_path = java.nio.file.Paths.get(project_dir, "data", "Duke.txt");
+    private static final String home = System.getProperty("user.home");
+    private static final String project_dir = java.nio.file.Paths.get(home, "OneDrive", "Desktop", "CS2103T", "ip", "src").toString();
+    private static final Path data_path = java.nio.file.Paths.get(project_dir, "data", "Duke.txt");
+
+//  DATE FORMATING
+    private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter output_date_formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     private static void print(String s) {
         System.out.println(lines);
         System.out.println(s);
+    }
+
+    public static LocalDate parse_date(String date) {
+        return LocalDate.parse(date, date_formatter);
+    }
+
+    public static String format_date(LocalDate date) {
+        return date.format(output_date_formatter);
     }
 
     public static String readString() {
@@ -72,13 +86,6 @@ public class Uy {
                     System.out.println("Got it. I've added this task:");
                     System.out.println(tasks.get(count).toString());
                     System.out.println("Now you have " + (count + 1) + " tasks in your list:");
-                } else if(message.equals("deadline")) {
-                    count++;
-                    tasks.add(new Deadlines(count));
-
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.get(count).toString());
-                    System.out.println("Now you have " + (count + 1) + " tasks in your list:");
                 } else if(message.equals("delete")) {
                     int index = readInt();
                     System.out.println("I've deleted this task:");
@@ -93,7 +100,6 @@ public class Uy {
                 }
                 try (FileWriter fw = new FileWriter(data_path.toString())) {
                     for(int i = 0;i <= count;i++) {
-                        print(tasks.get(i).toString());
                         fw.write(tasks.get(i).toString());
                     }
                 } catch (IOException e) {
