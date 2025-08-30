@@ -1,23 +1,20 @@
 public class Task {
     protected String task_name;
     protected Boolean marked = false;
-    protected int index;
     protected String type;
 
-    public Task(String task_name, Boolean marked, int index, String type) throws IllegalArgumentException {
+    public Task(String task_name, Boolean marked, String type) throws IllegalArgumentException {
         if(task_name.length() == 0) {
-            throw new IllegalArgumentException("OOPS!!! The description of a todo cannot be empty.");
+            throw new IllegalArgumentException("OOPS!!! The description of a task cannot be empty.");
         }
         this.task_name = task_name;
         this.marked = marked;
-        this.index = index;
         this.type = type;
     }
 
-    public Task(String task_name, Boolean marked, int index) {
+    public Task(String task_name, Boolean marked) {
         this.task_name = task_name;
         this.marked = marked;
-        this.index = index;
     }
 
     public String getTask_name() {
@@ -54,6 +51,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.getType() + this.getMarkedString() + this.task_name;
+        return this.getType() + this.getMarkedString() + " " + this.task_name;
     }
 }

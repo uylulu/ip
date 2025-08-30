@@ -1,39 +1,49 @@
+import java.time.LocalDate;
 import java.util.regex.*;
 
 public class Events extends Task {
-    protected String from;
-    protected String to;
+    protected LocalDate from;
+    protected LocalDate to;
 
-    public Events(String task_name, int index, String from, String to) {
-        super(task_name, false, index, "E");
+    public Events(String task_name, LocalDate from, LocalDate to) {
+        super(task_name, false, "E");
         this.from = from;
         this.to = to;
     }
 
-    public Events(int index) {
-        super("", false, index, "E");
-        String line = Uy.input.nextLine();
+    public Events(String description) throws IllegalArgumentException {
+        super("Event", false, "E");
 
-        Pattern pattern = Pattern.compile("^(.*?) /from (.*?) /to (.*)$");
-        Matcher matcher = pattern.matcher(line);
+        Pattern user_input_pattern = Pattern.compile("^(.*?) /from (.*?) /to (.*)$");
+        Matcher user_input_matcher = user_input_pattern.matcher(description);
 
-        if(matcher.find()) {
-            String task_name = matcher.group(1);
-            String from = matcher.group(2);
-            String to = matcher.group(3);
+        Pattern database_entry_pattern = Pattern.compile("^(.*?) \\(from: (.*?) to: (.*?)\\)$");
+        Matcher database_entry_matcher = database_entry_pattern.matcher(description);
+
+        if(user_input_matcher.find()) {
+            String task_name = user_input_matcher.group(1);
+            String from = user_input_matcher.group(2);
+            String to = user_input_matcher.group(3);
             this.task_name = task_name;
-            this.from = from;
-            this.to = to;
-        } else {
-            // TODO: NEED TO THROW ERROR
-        }
+            this.from = Uy.parse_date(from);
+            this.to = Uy.parse_date(to);
 
-        this.task_name = task_name;
+        } else if (database_entry_matcher.find()){
+            String task_name = database_entry_matcher.group(1);
+            String from = database_entry_matcher.group(2);
+            String to = database_entry_matcher.group(3);
+            this.task_name = task_name;
+            this.from = Uy.parse_date(from);
+            this.to = Uy.parse_date(to);
+        
+        } else {
+            throw new IllegalArgumentException("Invalid event format");
+        }
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (from: " + from + " to: " + to + ")";
+        return super.toString() + " (from: " + Uy.format_date(this.from) + " to: " + Uy.format_date(this.to) + ")";
     }
 }
 
