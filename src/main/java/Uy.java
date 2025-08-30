@@ -1,11 +1,17 @@
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.*;
+import java.io.FileWriter;
 
 public class Uy {
     private static String lines = "---------------------------------------";
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static int count = -1;
     public static Scanner input = new Scanner(System.in);
+    private static String home = System.getProperty("user.home");
+    private static String project_dir = java.nio.file.Paths.get(home, "OneDrive", "Desktop", "CS2103T", "ip", "src").toString();
+    private static Path data_path = java.nio.file.Paths.get(project_dir, "data", "Duke.txt");
 
     private static void print(String s) {
         System.out.println(lines);
@@ -84,6 +90,14 @@ public class Uy {
 
                 } else {
                     System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+                try (FileWriter fw = new FileWriter(data_path.toString())) {
+                    for(int i = 0;i <= count;i++) {
+                        print(tasks.get(i).toString());
+                        fw.write(tasks.get(i).toString());
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
