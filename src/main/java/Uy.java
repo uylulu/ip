@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Uy {
 
-    private static String lines = "---------------------------------------";
     private TaskList tasks = new TaskList();
     private Storage storage;
+    private UI ui = new UI();
 
     public static Scanner input = new Scanner(System.in);
 
@@ -28,70 +28,53 @@ public class Uy {
     }
 
     public void run() {
-        print("Hello I'm Uy, what can I do for you?");
+        ui.showWelcome();
         while (true) {
             try {
                 String message = readString();
                 if (message.equals("list")) {
-                    System.out.println("Here are the tasks in your list:");
-                    System.out.println(tasks.toString());
-                    System.out.println(lines);
+                    ui.showTasks(tasks);
     
                 } else if (message.equals("bye")) {
-                    print("Bye. Hope to see you again soon!");
+                    ui.showGoodbye();
                     break;
+
                 } else if (message.equals("mark")) {
-    
                     int x = readInt();
                     tasks.markTask(x - 1);
-                    System.out.println("Nice, I have marked this task as done:");
-                    System.out.println(tasks.getTask(x - 1).toString());
-    
+                    ui.showMarkedTask(tasks.getTask(x - 1));
+
                 } else if (message.equals("unmark")) {
-    
                     int x = readInt();
                     tasks.unmarkTask(x - 1);
-                    System.out.println("OK, I've marked this task as not done yet:");
+                    ui.showUnmarkedTask(tasks.getTask(x - 1));
                     System.out.println(tasks.getTask(x - 1).toString());
     
                 } else if (message.equals("todo")) {
                     tasks.addTask(new ToDos(Uy.input.nextLine().trim()));
+                    ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
 
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.getTask(tasks.getTaskCount() - 1).toString());
-                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
                 } else if (message.equals("deadline")) {
                     tasks.addTask(new Deadlines(Uy.input.nextLine().trim()));
+                    ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
 
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.getTask(tasks.getTaskCount() - 1).toString());
-                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
                 } else if (message.equals("event")) {
                     tasks.addTask(new Events(Uy.input.nextLine().trim()));
+                    ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
 
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(tasks.getTask(tasks.getTaskCount() - 1).toString());
-                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
                 } else if (message.equals("delete")) {
                     int index = readInt();
-                    System.out.println("I've deleted this task:");
-                    System.out.println(tasks.getTask(index - 1).toString());
-                    System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
-    
+                    ui.showDeleteTask(tasks.getTask(index - 1), tasks);
                     tasks.deleteTask(tasks.getTask(index - 1));
+
                 } else {
-                    System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
                 
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                ui.showError(e.getMessage());
             }
         }
-    }
-
-    private void print(String s) {
-        System.out.println(lines);
-        System.out.println(s);
     }
 
     public static LocalDate parse_date(String date) {
