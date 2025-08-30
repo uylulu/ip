@@ -5,31 +5,40 @@ public class Events extends Task {
     protected LocalDate from;
     protected LocalDate to;
 
-    public Events(String task_name, int index, LocalDate from, LocalDate to) {
-        super(task_name, false, index, "E");
+    public Events(String task_name, LocalDate from, LocalDate to) {
+        super(task_name, false, "E");
         this.from = from;
         this.to = to;
     }
 
-    public Events(int index) {
-        super("Event", false, index, "E");
-        String line = Uy.input.nextLine();
+    public Events(String description) throws IllegalArgumentException {
+        super("Event", false, "E");
 
-        Pattern pattern = Pattern.compile("^(.*?) /from (.*?) /to (.*)$");
-        Matcher matcher = pattern.matcher(line);
+        Pattern user_input_pattern = Pattern.compile("^(.*?) /from (.*?) /to (.*)$");
+        Matcher user_input_matcher = user_input_pattern.matcher(description);
 
-        if(matcher.find()) {
-            String task_name = matcher.group(1);
-            String from = matcher.group(2);
-            String to = matcher.group(3);
+        Pattern database_entry_pattern = Pattern.compile("^(.*?) \\(from: (.*?) to: (.*?)\\)$");
+        Matcher database_entry_matcher = database_entry_pattern.matcher(description);
+
+        if(user_input_matcher.find()) {
+            String task_name = user_input_matcher.group(1);
+            String from = user_input_matcher.group(2);
+            String to = user_input_matcher.group(3);
             this.task_name = task_name;
             this.from = Uy.parse_date(from);
             this.to = Uy.parse_date(to);
-        } else {
-            // TODO: NEED TO THROW ERROR
-        }
 
-        this.task_name = task_name;
+        } else if (database_entry_matcher.find()){
+            String task_name = database_entry_matcher.group(1);
+            String from = database_entry_matcher.group(2);
+            String to = database_entry_matcher.group(3);
+            this.task_name = task_name;
+            this.from = Uy.parse_date(from);
+            this.to = Uy.parse_date(to);
+        
+        } else {
+            throw new IllegalArgumentException("Invalid event format");
+        }
     }
 
     @Override

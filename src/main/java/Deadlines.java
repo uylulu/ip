@@ -4,24 +4,30 @@ import java.util.regex.*;
 public class Deadlines extends Task {
     protected LocalDate deadline;
 
-    public Deadlines(int index) {
-        super("Deadlines", false, index, "D");
+    public Deadlines(String description) {
+        super("Deadlines", false, "D");
 
-        String line = Uy.input.nextLine();
+        Pattern user_input_pattern = Pattern.compile("^(.*?) /by (.*?)$");
+        Matcher user_input_matcher = user_input_pattern.matcher(description);
 
-        Pattern pattern = Pattern.compile("^(.*?) /by (.*?)$");
-        Matcher matcher = pattern.matcher(line);
+        Pattern database_entry_pattern = Pattern.compile("^(.*?) \\(by: (.*?)\\)$");
+        Matcher database_entry_matcher = database_entry_pattern.matcher(description);
 
-        if(matcher.find()) {
-            String task_name = matcher.group(1);
-            String deadline = matcher.group(2);
-            this.task_name = task_name;
-            this.deadline = Uy.parse_date(deadline);
+        if(user_input_matcher.find()) {
+            String new_task_name = user_input_matcher.group(1);
+            String new_deadline = user_input_matcher.group(2);
+            this.task_name = new_task_name;
+            this.deadline = Uy.parse_date(new_deadline);
+
+        } else if(database_entry_matcher.find()) {
+            String new_task_name = database_entry_matcher.group(1);
+            String new_deadline = database_entry_matcher.group(2);
+            this.task_name = new_task_name;
+            this.deadline = Uy.parse_date(new_deadline);
+       
         } else {
-            // TODO: NEED TO THROW ERROR
+            throw new IllegalArgumentException("Invalid deadline format");
         }
-
-        this.task_name = task_name;
     }
 
     @Override
