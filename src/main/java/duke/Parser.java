@@ -5,43 +5,52 @@ public class Parser {
 
     }
 
-    public void parseAndRun(String message, TaskList tasks, UI ui, Storage storage) throws Exception {
-        if (message.equals("list")) {
-            ui.showTasks(tasks);
+    public String parseAndRun(String message, TaskList tasks, UI ui, Storage storage) throws Exception {
+        String type = message.split(" ")[0];
 
-        } else if (message.equals("bye")) {
-            ui.showGoodbye();
+        String remaining = message.substring(type.length()).trim();
 
-        } else if (message.equals("mark")) {
+        if (type.equals("list")) {
+            return ui.showTasks(tasks);
+
+        } else if (type.equals("bye")) {
+            return ui.showGoodbye();
+
+        } else if (type.equals("mark")) {
             int x = Uy.readInt();
             tasks.markTask(x - 1);
-            ui.showMarkedTask(tasks.getTask(x - 1));
+            return ui.showMarkedTask(tasks.getTask(x - 1));
 
-        } else if (message.equals("unmark")) {
+        } else if (type.equals("unmark")) {
             int x = Uy.readInt();
             tasks.unmarkTask(x - 1);
-            ui.showUnmarkedTask(tasks.getTask(x - 1));
-            System.out.println(tasks.getTask(x - 1).toString());
+            return ui.showUnmarkedTask(tasks.getTask(x - 1));
 
-        } else if (message.equals("todo")) {
-            tasks.addTask(new ToDos(Uy.input.nextLine().trim()));
-            ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
+        } else if (type.equals("todo")) {
+            tasks.addTask(new ToDos(remaining));
+            return ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
 
-        } else if (message.equals("deadline")) {
-            tasks.addTask(new Deadlines(Uy.input.nextLine().trim()));
-            ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
+        } else if (type.equals("deadline")) {
+            tasks.addTask(new Deadlines(remaining));
+            return ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
 
-        } else if (message.equals("event")) {
-            tasks.addTask(new Events(Uy.input.nextLine().trim()));
-            ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
+        } else if (type.equals("event")) {
+            tasks.addTask(new Events(remaining));
+            return ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
 
-        } else if (message.equals("delete")) {
+        } else if (type.equals("delete")) {
             int index = Uy.readInt();
-            ui.showDeleteTask(tasks.getTask(index - 1), tasks);
+            String res = ui.showDeleteTask(tasks.getTask(index - 1), tasks);
             tasks.deleteTask(tasks.getTask(index - 1));
+            return res;
+
+        } else if (type.equals("find")) {
+            String keyword = remaining;
+            TaskList results = tasks.findTasks(keyword);
+            return ui.showMatchingTasks(results);
 
         } else {
-            ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            return ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 }

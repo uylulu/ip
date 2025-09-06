@@ -14,9 +14,22 @@ public class Uy {
 
     public static Scanner input = new Scanner(System.in);
 
-//  DATE FORMATING
     private static final DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter output_date_formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            if (input.equals("bye")) {
+                return ui.showGoodbye();
+            }
+            return parser.parseAndRun(input, tasks, ui, storage);
+        } catch (Exception e) {
+            return ui.showError(e.getMessage());
+        }
+    }
 
     public Uy(String filePath) {
         this.storage = new Storage(filePath);
@@ -27,6 +40,10 @@ public class Uy {
             e.printStackTrace();
             this.tasks = new TaskList();
         }
+    }
+
+    public Uy() {
+        this("data/Duke.txt");
     }
 
     public void run() {

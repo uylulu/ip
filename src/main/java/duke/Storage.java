@@ -15,11 +15,6 @@ public class Storage {
         this.data_path = Paths.get(project_dir, file_path);
     }
 
-    // 3 types of tasks:
-    // [T][] read books
-    // [E][] project (from: Aug 30 2025 to: Aug 31 2025)
-    // [D][] return book (by: Sep 01 2025)
-
     public void writeTasks(TaskList tasks) {
         try (FileWriter fw = new FileWriter(data_path.toString())) {
             for (int i = 0; i < tasks.getTaskCount(); i++) {
