@@ -6,53 +6,53 @@ public class UI {
 
     }
 
-    public void showWelcome() {
-        System.out.println("Hello I'm Uy, what can I do for you?");
+    public String showWelcome() {
+        return "Hello I'm Uy, what can I do for you?";
     }
 
-    public void showGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showGoodbye() {
+        return "Bye. Hope to see you again soon!";
     }
 
-    public void showLoadingError() {
-        System.out.println("Error loading tasks. Please try again.");
+    public String showLoadingError() {
+        return "Error loading tasks. Please try again.";
     }
 
-    public void showTasks(TaskList tasks) {
-        System.out.println("Here are the tasks in your list:");
-        System.out.println(tasks.toString());
-        System.out.println(lines);
+    public String showTasks(TaskList tasks) {
+        return "Here are the tasks in your list:\n"
+                + tasks.toString() + "\n"
+                + lines;
     }
 
-    public void showMatchingTasks(TaskList tasks) {
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.println(tasks.toString());
+    public String showMatchingTasks(TaskList tasks) {
+        return "Here are the matching tasks in your list:\n"
+                + tasks.toString();
     }
 
-    public void showMarkedTask(Task task) {
-        System.out.println("Nice, I have marked this task as done:");
-        System.out.println(task.toString());
+    public String showMarkedTask(Task task) {
+        return "Nice, I have marked this task as done:\n"
+                + task.toString();
     }
 
-    public void showUnmarkedTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task.toString());
+    public String showUnmarkedTask(Task task) {
+        return "OK, I've marked this task as not done yet:\n"
+                + task.toString();
     }
 
-    public void showAddTask(Task task, TaskList tasks) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
+    public String showAddTask(Task task, TaskList tasks) {
+        return "Got it. I've added this task:\n"
+                + task.toString() + "\n"
+                + "Now you have " + tasks.getTaskCount() + " tasks in your list";
     }
 
-    public void showDeleteTask(Task task, TaskList tasks) {
-        System.out.println("I've deleted this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + tasks.getTaskCount() + " tasks in your list");
+    public String showDeleteTask(Task task, TaskList tasks) {
+        return "I've deleted this task:\n"
+                + task.toString() + "\n"
+                + "Now you have " + tasks.getTaskCount() + " tasks in your list";
     }
 
-    public void showError(String errorMessage) {
-        System.out.println("Error: " + errorMessage);
+    public String showError(String errorMessage) {
+        return "Error: " + errorMessage;
     }
 
 }
