@@ -1,5 +1,7 @@
 package duke;
-public class Task {
+
+
+public class Task extends Comparable<Task> {
     protected String task_name;
     protected Boolean marked = false;
     protected String type;
@@ -48,6 +50,11 @@ public class Task {
 
     public String getType() {
         return "[" + this.type + "]";
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        return this.type.compareTo(other.type);
     }
 
     @Override

@@ -33,6 +33,15 @@ public class Deadlines extends Task {
     }
 
     @Override
+    public int compareTo(Task other) {
+        if(!(other instanceof Deadlines)) {
+            return super.compareTo(other);
+        }
+        Deadlines otherDeadline = (Deadlines) other;
+        return this.deadline.compareTo(otherDeadline.deadline);
+    }
+
+    @Override
     public String toString() {
         return super.toString() + " (by: " + Uy.format_date(this.deadline) + ")";
     }

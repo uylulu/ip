@@ -16,7 +16,6 @@ public class TaskList {
 
     public TaskList findTasks(String keyword) {
         TaskList result = new TaskList();
-
         for(Task task : this.tasks) {
             if(task.getTask_name().contains(keyword)) {
                 result.addTask(task);
@@ -37,10 +36,12 @@ public class TaskList {
 
     public void addTask(Task task) {
         tasks.add(task);
+        tasks.sort(null);
     }
 
     public void deleteTask(Task task) {
         tasks.remove(task);
+        tasks.sort(null);
     }
 
     public int getTaskCount() {

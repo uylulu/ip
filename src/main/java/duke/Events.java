@@ -44,6 +44,19 @@ public class Events extends Task {
     }
 
     @Override
+    public int compareTo(Task other) {
+        if(!(other instanceof Events)) {
+            return super.compareTo(other);
+        }
+        Events otherEvent = (Events) other;
+        int fromComparison = this.from.compareTo(otherEvent.from);
+        if (fromComparison != 0) {
+            return fromComparison;
+        }
+        return this.to.compareTo(otherEvent.to);
+    }
+
+    @Override
     public String toString() {
         return super.toString() + " (from: " + Uy.format_date(this.from) + " to: " + Uy.format_date(this.to) + ")";
     }   
