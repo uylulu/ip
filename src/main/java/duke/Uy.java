@@ -53,6 +53,9 @@ public class Uy {
                 String message = readString();
                 parser.parseAndRun(message, tasks, ui, storage);
 
+                assert message != null;
+                assert storage != null;
+                
                 if(message.equals("bye")) {
                     break;
                 }
