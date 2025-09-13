@@ -19,6 +19,7 @@ public class TaskList {
     }
 
     public void markTask(int index) {
+        assert (index >= 0 && index < tasks.size());
         tasks.get(index).mark();
     }
 
