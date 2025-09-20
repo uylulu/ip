@@ -7,52 +7,53 @@ public class UI {
     }
 
     public String showWelcome() {
-        return "Hello I'm Uy, what can I do for you?";
+        return "Welcome, I am Uy—your Zen Productivity Coach. Take a deep breath, and let’s begin your mindful journey.";
     }
 
     public String showGoodbye() {
-        return "Bye. Hope to see you again soon!";
+        return "Farewell for now. Remember: progress is a path, not a race. Be kind to yourself.";
     }
 
     public String showLoadingError() {
-        return "Error loading tasks. Please try again.";
+        return "Hmm, a ripple in the pond. I couldn’t load your tasks. Let’s try again, calmly.";
     }
 
     public String showTasks(TaskList tasks) {
-        return "Here are the tasks in your list:\n"
+        return "Here are your pebbles for today:\n"
                 + tasks.toString() + "\n"
+                + "(Remember: move one pebble at a time.)\n"
                 + lines;
     }
 
     public String showMatchingTasks(TaskList tasks) {
-        return "Here are the matching tasks in your list:\n"
+        return "These tasks align with your current path:\n"
                 + tasks.toString();
     }
 
     public String showMarkedTask(Task task) {
-        return "Nice, I have marked this task as done:\n"
+        return "Another pebble moved. Well done.\n"
                 + task.toString();
     }
 
     public String showUnmarkedTask(Task task) {
-        return "OK, I've marked this task as not done yet:\n"
+        return "This pebble is back on your path. Every journey has its turns.\n"
                 + task.toString();
     }
 
     public String showAddTask(Task task, TaskList tasks) {
-        return "Got it. I've added this task:\n"
+        return "A new pebble on your path:\n"
                 + task.toString() + "\n"
-                + "Now you have " + tasks.getTaskCount() + " tasks in your list";
+                + "Now you have " + tasks.getTaskCount() + " pebbles to move. Walk gently.";
     }
 
     public String showDeleteTask(Task task, TaskList tasks) {
-        return "I've deleted this task:\n"
+        return "Letting go is part of the journey:\n"
                 + task.toString() + "\n"
-                + "Now you have " + tasks.getTaskCount() + " tasks in your list";
+                + "Now you have " + tasks.getTaskCount() + " pebbles remaining.";
     }
 
     public String showError(String errorMessage) {
-        return "Error: " + errorMessage;
+        return "Even the calmest pond has ripples: '" + errorMessage + "'. Lets try again, mindfully.";
     }
 
 }
