@@ -1,4 +1,4 @@
-package duke;
+package uy;
 
 import java.util.ArrayList;
 

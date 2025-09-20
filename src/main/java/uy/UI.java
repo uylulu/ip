@@ -1,4 +1,4 @@
-package duke;
+package uy;
 public class UI {
     private String lines = "---------------------------------------";
 

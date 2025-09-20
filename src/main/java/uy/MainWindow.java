@@ -1,4 +1,4 @@
-package duke;
+package uy;
 
 // taken from https://se-education.org/guides/tutorials/javaFxPart4.html
 

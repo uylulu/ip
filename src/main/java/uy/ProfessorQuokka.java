@@ -1,11 +1,12 @@
-package duke;
+
+package uy;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
-public class Uy {
+public class ProfessorQuokka {
 
     private TaskList tasks = new TaskList();
     private Storage storage;
@@ -31,7 +32,7 @@ public class Uy {
         }
     }
 
-    public Uy(String filePath) {
+    public ProfessorQuokka(String filePath) {
         this.storage = new Storage(filePath);
 
         try {
@@ -42,8 +43,8 @@ public class Uy {
         }
     }
 
-    public Uy() {
-        this("data");
+    public ProfessorQuokka() {
+        this("data/ProfessorQuokka.txt");
     }
 
     public void run() {

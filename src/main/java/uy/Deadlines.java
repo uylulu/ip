@@ -1,4 +1,4 @@
-package duke;
+package uy;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;

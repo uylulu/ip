@@ -1,4 +1,4 @@
-package duke;
+package uy;
 public class ToDos extends Task {
 
     public ToDos(String task_name) {

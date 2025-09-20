@@ -1,4 +1,4 @@
-package duke;
+package uy;
 
 public class Parser {
     public Parser() {

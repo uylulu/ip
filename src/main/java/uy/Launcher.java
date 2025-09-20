@@ -1,4 +1,4 @@
-package duke;
+package uy;
 
 import javafx.application.Application;
 
