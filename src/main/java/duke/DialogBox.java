@@ -47,13 +47,20 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    // Used COPILOT TO COMPLETE
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
+        db.setAlignment(Pos.TOP_RIGHT);
+        db.dialog.setStyle("-fx-background-color: #e0e0e0; -fx-border-color: #bdbdbd; -fx-border-width: 1; -fx-background-radius: 16; -fx-border-radius: 16;");
+        return db;
     }
 
+    // Used COPILOT TO COMPLETE
     public static DialogBox getDukeDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
         db.flip();
+        db.setAlignment(Pos.TOP_LEFT);
+        db.dialog.setStyle("-fx-background-color: #d1eaff; -fx-border-color: #90caf9; -fx-border-width: 1; -fx-background-radius: 16; -fx-border-radius: 16;");
         return db;
     }
 }

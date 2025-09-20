@@ -1,7 +1,7 @@
 package duke;
 
 
-public class Task extends Comparable<Task> {
+public class Task implements Comparable<Task> {
     protected String task_name;
     protected Boolean marked = false;
     protected String type;
