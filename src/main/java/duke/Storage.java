@@ -12,7 +12,20 @@ public class Storage {
     private Path data_path;
 
     public Storage(String file_path) {
-        this.data_path = Paths.get(project_dir, file_path);
+        // check if path exists
+        if (Files.notExists(Paths.get(project_dir, file_path, "Uy.txt"))) {
+            try {
+                Files.createFile(Paths.get(project_dir, file_path, "Uy.txt"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            this.data_path = Paths.get(project_dir, file_path, "Uy.txt");
+        } catch (Exception e) {
+            // Create the directory if it doesn't exist
+            e.printStackTrace();
+        }
     }
 
     public void writeTasks(TaskList tasks) {
@@ -49,7 +62,8 @@ public class Storage {
 
     public TaskList loadTasks() throws IOException {
         try {
-            List<String> lines = Files.readAllLines(data_path);
+            System.out.println(this.data_path.toString());
+            List<String> lines = Files.readAllLines(this.data_path);
             TaskList tasks = new TaskList();
             for (String line : lines) {
                 // Parse each line and add the task to the TaskList

@@ -43,7 +43,7 @@ public class Uy {
     }
 
     public Uy() {
-        this("data/Duke.txt");
+        this("data");
     }
 
     public void run() {
