@@ -28,15 +28,15 @@ public class Parser {
 
         } else if (type.equals("todo")) {
             tasks.addTask(new ToDos(remaining));
-            return ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
+            return ui.showAddTask(new ToDos(remaining), tasks);
 
         } else if (type.equals("deadline")) {
             tasks.addTask(new Deadlines(remaining));
-            return ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
+            return ui.showAddTask(new Deadlines(remaining), tasks);
 
         } else if (type.equals("event")) {
             tasks.addTask(new Events(remaining));
-            return ui.showAddTask(tasks.getTask(tasks.getTaskCount() - 1), tasks);
+            return ui.showAddTask(new Events(remaining), tasks);
 
         } else if (type.equals("delete")) {
             int index = Uy.readInt();
