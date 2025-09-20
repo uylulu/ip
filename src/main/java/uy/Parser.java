@@ -17,12 +17,12 @@ public class Parser {
             return ui.showGoodbye();
 
         } else if (type.equals("mark")) {
-            int x = Uy.readInt();
+            int x = Integer.parseInt(remaining);
             tasks.markTask(x - 1);
             return ui.showMarkedTask(tasks.getTask(x - 1));
 
         } else if (type.equals("unmark")) {
-            int x = Uy.readInt();
+            int x = Integer.parseInt(remaining);
             tasks.unmarkTask(x - 1);
             return ui.showUnmarkedTask(tasks.getTask(x - 1));
 
@@ -39,7 +39,7 @@ public class Parser {
             return ui.showAddTask(new Events(remaining), tasks);
 
         } else if (type.equals("delete")) {
-            int index = Uy.readInt();
+            int index = Integer.parseInt(remaining);
             String res = ui.showDeleteTask(tasks.getTask(index - 1), tasks);
             tasks.deleteTask(tasks.getTask(index - 1));
             return res;
