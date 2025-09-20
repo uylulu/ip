@@ -1,3 +1,4 @@
+<!-- GENERATED WITH THE HELP OF COPILOT -->
 # Uy: Zen Productivity Coach
 
 A mindful, task-tracking assistant to help you organize your day with calm and clarity.
@@ -16,7 +17,7 @@ A mindful, task-tracking assistant to help you organize your day with calm and c
 
 ### Prerequisites
 
-- Java 11 or above
+- Java 17
 - JavaFX SDK (ensure it’s set up in your environment)
 - Gradle (included in the project)
 
