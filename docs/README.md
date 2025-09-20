@@ -14,6 +14,12 @@ A mindful, task-tracking assistant to help you organize your day with calm and c
 - **Persistent Storage:** Your tasks are saved and loaded automatically.
 - **Mindful Guidance:** Uy encourages you with calm, positive messages.
 
+## Screenshot
+
+Here’s how Uy looks in action:
+
+![Uy Application Screenshot](docs/Ui.png)
+
 ## Getting Started
 
 ### Prerequisites
@@ -29,7 +35,6 @@ A mindful, task-tracking assistant to help you organize your day with calm and c
    ```
    ./gradlew run
    ```
-   (On Windows, use `gradlew.bat run`)
 
 ### GUI Overview
 
