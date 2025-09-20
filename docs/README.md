@@ -18,7 +18,7 @@ A mindful, task-tracking assistant to help you organize your day with calm and c
 
 Here’s how Uy looks in action:
 
-![Uy Application Screenshot](docs/Ui.png)
+![Uy Application Screenshot](./Ui.png)
 
 ## Getting Started
 
