@@ -30,10 +30,10 @@ Here’s how Uy looks in action:
 
 ### Running the App
 
-1. Open a terminal in the `ip` directory.
+1. Open a terminal in the directory where the `uy.jar` file resides.
 2. Run:
    ```
-   ./gradlew run
+   java -jar uy.jar
    ```
 
 ### GUI Overview
