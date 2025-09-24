@@ -29,16 +29,25 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    /**
+     * Marks the task at the given index as done.
+     */
     public void markTask(int index) {
         assert (index >= 0 && index < tasks.size());
         tasks.get(index).mark();
     }
 
+    /**
+     * Adds a task to the task list and sorts the list.
+     */
     public void addTask(Task task) {
         tasks.add(task);
         tasks.sort(null);
     }
 
+    /**
+     * Removes a task from the task list and sorts the list.
+     */
     public void deleteTask(Task task) {
         tasks.remove(task);
         tasks.sort(null);
@@ -48,6 +57,9 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Marks the task at the given index as not done.
+     */
     public void unmarkTask(int index) {
         tasks.get(index).unmark();
     }
