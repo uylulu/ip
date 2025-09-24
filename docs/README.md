@@ -1,8 +1,8 @@
 <!-- GENERATED WITH THE HELP OF COPILOT -->
 
-# Uy: Zen Productivity Coach
+# Uy: A Mindful Task Manager
 
-A mindful, task-tracking assistant to help you organize your day with calm and clarity.
+A task management application with a calming, mindful twist.
 
 ## Features
 
@@ -84,4 +84,3 @@ Uy will encourage you with gentle, zen-like messages as you manage your tasks. R
 ## Credits
 
 - Inspired by the SE-EDU JavaFX tutorial.
-- Zen Productivity Coach personality and UI by your customization.
