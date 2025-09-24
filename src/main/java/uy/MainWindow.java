@@ -22,6 +22,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    private static final String WELCOME_MESSAGE = "Welcome, I am Uy, your Zen Productivity Coach. Take a deep breath, and lets begin your mindful journey.";
+
     private Uy uy;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
@@ -30,6 +32,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().addAll(
+            DialogBox.getDukeDialog(WELCOME_MESSAGE, dukeImage)
+        );
     }
 
     /** Injects the Uy instance */

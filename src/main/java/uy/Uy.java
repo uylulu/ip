@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+import com.sun.source.tree.Tree;
+
 public class Uy {
 
     private TaskList tasks = new TaskList();
@@ -47,7 +49,6 @@ public class Uy {
     }
 
     public void run() {
-        ui.showWelcome();
         while (true) {
             try {
                 String message = readString();

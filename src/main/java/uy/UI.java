@@ -1,3 +1,4 @@
+// UI text messages were enchanced by COPILOT
 package uy;
 public class UI {
     private String lines = "---------------------------------------";
